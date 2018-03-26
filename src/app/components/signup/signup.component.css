@@ -1,0 +1,15 @@
+#sign-up{
+  background-image: url('../../../../../back-end/public/images/screen-1839500_1280.jpg');
+  background-size: cover;
+  /* opacity: 0.7; */
+  height: 90vh;
+  margin-top: 4rem;
+}
+
+label{
+  font-size: .9rem;
+}
+
+nav a, nav .nav-item{
+  color: white;
+}

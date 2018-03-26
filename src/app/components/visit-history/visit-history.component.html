@@ -1,0 +1,62 @@
+<nav class="navbar fixed-top navbar-expand-sm navbar-light shadow">
+  <a class="navbar-brand" [routerLink]="['/']"><b><i>EasyMed</i></b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav ml-auto">
+          <!-- <a class="nav-item nav-link" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a> -->
+          <a class="nav-item nav-link" [routerLink]="['/users/' + user._id]">Patients</a>
+          <a class="nav-item nav-link" [routerLink]="['/users/' + user._id + '/edit']">Profile</a>
+          <button (click)="logout()" class="nav-item logout">Logout</button>
+      </div>
+  </div>
+</nav>
+
+<div class="container-fluid" id="visit-history-body">
+  <div class="container" id="visit-history">
+<p *ngIf="visitHistoryError" class="error">
+    {{ visitHistoryError }}
+  </p>
+
+<h1 class="text-center">Visit History for {{visitHistory[0].patient_id.firstName}} {{visitHistory[0].patient_id.lastName}} </h1>
+<hr>
+<div class="row ">
+  <div class="col-6 vh-left">
+      <!-- <a [routerLink]="['/users/' + user._id]">All Clients</a> -->
+      <a [routerLink]="['/visits/new/' + patientId]">Add Visit</a>
+      <a class="d-block" [routerLink]="['/users/' + user._id]">Back To Clients</a>
+      <button class="btn btn-danger auth d-block btn-md delete"(click)="deletePatient()">Delete Patient</button>
+  </div>
+  <div class="col-6 card visit-card">
+    <div class="card-header">
+      <!-- <div class="row">
+        <div class="col-md-6"> -->
+          <h3>Visits - <h5 class="d-inline">Date</h5> - <h5 class="d-inline">Assessment</h5></h3>
+        <!-- </div> -->
+        <!-- <div class="col-md-6">
+          <h3>Assessment</h3>
+        </div> -->
+      <!-- </div> -->
+    </div>
+    <div class="card-body">
+      <!-- For md+ Only -->
+        <!-- <div class="row">
+          <div class="col-md-6"><h5>Date</h5></div>
+          <div class="col-md-6"><h5>Assessment</h5></div>
+        </div>
+        <hr> -->
+      <div *ngFor="let visit of visitHistory" class="d-flex justify-content-between visits">
+      <!-- <a [routerLink]="['/visits/visit/' + visit._id]">{{visit.createdAt | date:'MM/dd/yyyy' }} - <span class="assessment"></span>{{ visit.assessment }}</span></a> -->
+      <a [routerLink]="['/visits/visit/' + visit._id]">{{visit.createdAt | date:'MM/dd/yyyy' }} - {{ visit.assessment }}</a>
+    </div>
+  </div>
+
+<div *ngIf="visitHistory.length===0">
+  <p>No Visits</p>
+</div>
+</div>
+</div>
+</div>
+</div>

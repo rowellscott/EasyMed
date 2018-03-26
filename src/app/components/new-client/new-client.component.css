@@ -1,0 +1,24 @@
+#add-form-body{
+  background-color: whitesmoke;
+  height: 100vh
+}
+
+
+#add-form{
+  padding-top: 5rem;
+  border: 1px solid black;
+  /* background: rgb(69, 130, 179, 0.5); */
+  background: white;
+}
+
+.add-button{
+  margin: .7rem;
+}
+
+/* .form-check-label{
+  padding: 0px .2rem;
+} */
+
+nav a, nav .nav-item{
+  color: white;
+}

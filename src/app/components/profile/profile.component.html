@@ -1,0 +1,141 @@
+<nav *ngIf="user.role==='Doctor'" class="navbar fixed-top navbar-expand-sm navbar-light shadow">
+  <a class="navbar-brand" [routerLink]="['/']"><b><i>EasyMed</i></b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav ml-auto">
+          <!-- <a class="nav-item nav-link" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a> -->
+          <a class="nav-item nav-link" [routerLink]="['/users/' + user._id]">Patients</a>
+          <a class="nav-item nav-link" [routerLink]="['/users/' + user._id + '/edit']">Profile</a>
+          <button (click)="logout()" class="nav-item logout">Logout</button>
+      </div>
+  </div>
+</nav>
+
+<nav *ngIf="user.role==='Patient'" class="navbar fixed-top navbar-expand-sm navbar-light shadow">
+  <a class="navbar-brand" [routerLink]="['/']"><b><i>EasyMed</i></b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav ml-auto">
+          <!-- <a class="nav-item nav-link" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a> -->
+          <a class="nav-item nav-link" [routerLink]="['/users/' + user._id]">Visit</a>
+          <a class="nav-item nav-link" [routerLink]="['/users/' + user._id + '/edit']">Profile</a>
+          <button (click)="logout()" class="nav-item logout">Logout</button>
+      </div>
+  </div>
+</nav>
+
+
+
+
+<div class="container-fluid  user-pages-body">
+  <div class="container user-pages-content">
+
+<h1 *ngIf="profile.lastName.slice(-1)==='s'" class="text-center">{{user.firstName}} {{profile.lastName}}' Profile</h1>
+<h1 *ngIf="profile.lastName.slice(-1)!=='s'" class="text-center">{{user.firstName}} {{profile.lastName}}'s Profile</h1>
+<hr>
+<div class="row">
+  <div class="col-sm-6">
+  <div class="card info-card">
+  <div class="card-header">
+    <h3>Profile Info</h3>
+  </div>
+  <div clas="card-body">
+<ul>
+  <li>Username: {{user.username}}</li>
+  <li>Name: {{user.firstName}}</li>
+  <li>Last Name: {{user.lastName}}</li>
+  <li>Gender: {{user.gender}}</li>
+  <li>Address: {{user.address}}</li>
+  <li>City: {{user.city}}</li>
+  <li>State: {{user.state}}</li>
+  <li>Zip: {{user.zip}}</li>
+  <li *ngIf="user.role==='Patient'">Insurance: {{user.insurance_co}}</li>
+  <li *ngIf="user.image">Photo: <img [src]="baseUrl + user.image" alt="" width="150" height="150"></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="col-sm-6">
+<h3>Edit Profile</h3>
+
+<div class="form">
+<p *ngIf="saveError" class="error alert alert-danger" role="alert">
+  <i class="fa fa-exclamation-circle"></i>
+  {{ saveError }}
+</p>
+<form (ngSubmit)="updateProfile(profile._id, myForm)" #myForm='ngForm'>
+  <label for="username">Username:</label>
+  <input id="username" type="text" [(ngModel)]="profile.username" name="updatedUsername" 
+  value="{{ profile.username }}" class="form-control">
+  <br>
+
+  <label for="first-name">First Name:</label>
+  <input id="first-name" type="text" [(ngModel)]="profile.firstName" name="updatedFirstName" 
+  value="{{ profile.firstName }}" class="form-control">
+  <br>
+
+  <label for="last-name">Last Name:</label>
+  <input id="last-name" type="text" [(ngModel)]="profile.lastName" name="updatedLastName" 
+  value="{{ profile.lastName }}" class="form-control">
+  <br>
+ <!-- <div class="gender-radio-buttons"> -->
+    
+    <!-- <div *ngIf="profile.gender==='M'">
+      <label>Gender:</label>
+      <br>
+      <label for="gender-male">M</label>
+      <input id="gender-male" type="radio" [(ngModel)]="updatedGender" name="updatedGender" 
+      value="M" class="form-control" checked="checked">
+      <label for="gender-female">F</label>
+      <input id="gender-female" type="radio" [(ngModel)]="updatedGender" name="updatedGender" 
+      value="F" class="form-control">
+    </div> -->
+  
+    <!--  Necessary? -->
+    <!-- <div *ngIf="profile.gender==='F'">
+      <label for="gender-male">Gender - M:</label>
+        <input id="gender-male" type="radio" [(ngModel)]="updatedGender" name="updatedGender" 
+        value="M" class="form-control">
+        <label for="gender-female">Gender - F:</label>
+        <input id="gender-female" type="radio" [(ngModel)]="updatedGender" name="updatedGender" 
+        value="F" class="form-control" checked="checked">
+    </div>
+  </div> -->
+
+  <label for="address">Address:</label>
+  <input id="address" type="text" [(ngModel)]="profile.address" name="updatedAddress" 
+  value="{{ profile.address }}" class="form-control">
+  <br>
+  <label for="city">City:</label>
+  <input id="city" type="text" [(ngModel)]="profile.city" name="updatedCity" 
+  value="{{ profile.city }}" class="form-control">
+  <br>
+  <label for="state">State:</label>
+  <input id="state" type="text" [(ngModel)]="profile.state" name="updatedState" 
+  value="{{ profile.state }}" class="form-control">
+  <br>
+  <label for="zip">Zip:</label>
+  <input id="zip" type="number" [(ngModel)]="profile.zip" name="updatedZip" 
+  value="{{ profile.zip }}" class="form-control">
+  <br>
+
+  <!-- <div *ngIf="profile.role === 'Patient'"> -->
+  <label *ngIf="profile.role==='Patient'" for="insurance-co">Insurance:</label>
+  <input *ngIf="profile.role==='Patient'" id="insurance-co" type="text" [(ngModel)]="profile.insurance_co" name="updatedInsuranceCo" 
+    value="{{ profile.insurance_co }}" class="form-control">
+  <!-- </div>   -->
+  <button class="btn btn-success btn-block auth">Save Updates</button>
+  </form>
+</div>
+  <!-- <button class="btn btn-danger btn-block auth"(click)="deleteThisUser()">Delete Profile</button> -->
+</div>
+</div>
+</div>
+</div>

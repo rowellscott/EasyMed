@@ -1,0 +1,24 @@
+#user-home{
+  margin-top: 4rem;
+  background-color: whitesmoke;
+  height: 100vh;
+}
+
+/* User Name Header On User Home Page */
+.user-title{
+  color: black;
+  text-decoration: none;
+}
+
+.add-client-link{
+  margin: 3vh 0;
+}
+
+.patient-link{
+  font-size: 1.4rem;
+}
+
+nav a, nav .nav-item, .navbar-brand:hover{
+  color: white;
+}
+

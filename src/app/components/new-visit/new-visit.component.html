@@ -1,0 +1,100 @@
+<nav class="navbar fixed-top navbar-expand-sm navbar-light shadow">
+  <a class="navbar-brand" [routerLink]="['/']"><b><i>EasyMed</i></b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav ml-auto">
+          <!-- <a class="nav-item nav-link" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a> -->
+          <a class="nav-item nav-link disabled">Patients</a>
+          <a class="nav-item nav-link disabled">Profile</a>
+          <button class="nav-item logout-new-visit disabled">Logout</button>
+      </div>
+  </div>
+</nav>
+
+
+
+
+<div class="container-fluid" id="new-visit-body">
+  <div class="container" id="new-visit">
+
+
+<div class="row">
+  <div class="col-6">
+    <h3>New Visit</h3>
+  </div> 
+  <div class="col-6 text-right">
+    <button (click)="cancelVisit()" class="btn btn-danger">Cancel</button>
+  </div> 
+</div>
+
+<hr>
+<div class="form">
+<p *ngIf="newVisitError" class="error alert alert-danger" role="alert">
+    <i class="fa fa-exclamation-circle"></i>
+    {{ newVisitError }}
+  </p>
+<form (ngSubmit)="addNewVisit()" >
+ <div class="row">
+  <div class="col-4">
+  <label for="temp-deg">Temp (F)</label>
+  <input id="temp-deg" type="number" [(ngModel)]="newVisit.temperatureDeg" name="temperatureDeg" 
+  value="" min="90" max="110.9" class="temp form-control">
+  <!-- <label for="temp-F">F</label>
+  <input id="temp-F" type="radio" [(ngModel)]="newVisit.temperatureScale" name="temperatureScaleF" 
+  value="F" class="temp-button" checked>
+  <label for="temp-C">C</label>
+  <input id="temp-C" type="radio" [(ngModel)]="newVisit.temperatureScale" name="temperatureScaleC" 
+  value="C" class="temp-button"> -->
+</div>
+  <!-- <br> -->
+  <div class="col-4">
+  <label for="height-1">Height (ft)</label>
+  <input id="height-1" type="number" [(ngModel)]="newVisit.heightNumOne" name="heightNumOne" 
+  value="" min="0" max="10" class="height form-control">
+</div>
+<div class="col-4">
+  <label for="height-2">Height (in)</label>
+  <input id="height-2" type="number" [(ngModel)]="newVisit.heightNumTwo" name="heightNumTwo" 
+  value="" min="0" max="36" class="height form-control">
+  </div>
+  </div>
+  <br>
+  <label for="weight">Weight (lbs):</label>
+  <input id="weight" type="number" [(ngModel)]="newVisit.weightNum" name="weightNum" 
+  value="" min="0" max="999" class="weight form-control">
+  <br>
+
+  <label for="blood-pressure">Blood Pressure:</label>
+  <input id="blood-pressure" type="text" [(ngModel)]="newVisit.bloodPressure" name="bloodPressure" 
+  value="" class="form-control">
+  <br>
+  <label for="chief-complaint">Chief Complaint:</label>
+  <textarea id="chief-complaint" [(ngModel)]="newVisit.chiefComplaint" name="chiefComplaint" 
+  value="" class="form-control"></textarea>
+  <br>
+  <label for="assessment">Assessment:</label>
+  <textarea id="assessment" [(ngModel)]="newVisit.assessment" name="assessment" 
+  value="" class="form-control"></textarea>
+  <br>
+  <label for="treatment">Treatment:</label>
+  <textarea id="treatment" [(ngModel)]="newVisit.treatment" name="treatment" 
+  value="" class="form-control"></textarea>
+  <br>
+
+  <!-- <label for="client-image">Client Photo (optional): </label>
+  <input id="client-image" type="file" name="patientImage" ng2FileSelect [uploader]="myUploader">
+  <br> -->
+
+  <div class="col-12 text-center add-button">
+      <button type="submit" class="btn btn-primary">Add Visit</button>
+     
+    </div>
+</form>
+
+<!-- <a [routerLink]="['/visits/' + patientID]">Visit History</a> -->
+</div>
+</div>
+</div>

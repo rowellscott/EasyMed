@@ -1,0 +1,8 @@
+.info-card{
+  background: whitesmoke;
+  margin-bottom: 1rem;
+}
+
+nav a, nav .nav-item{
+  color: white;
+}

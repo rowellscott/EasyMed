@@ -1,0 +1,16 @@
+#new-visit-body{
+  margin-top: 4rem;
+  background-color: whitesmoke;
+  height: 100vh;
+ 
+}
+
+#new-visit{
+  padding-top: 1rem;
+  background: white;
+  border: 1px solid black;
+}
+
+nav a, nav .nav-item, .navbar-brand:hover{
+  color: white;
+}

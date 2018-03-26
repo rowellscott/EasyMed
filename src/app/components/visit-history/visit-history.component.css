@@ -1,0 +1,27 @@
+#visit-history-body{
+  margin-top: 4rem;
+  background-color: whitesmoke;
+  height: 100vh
+}
+
+.vh-left a, .container button{
+  font-size: 2rem;
+}
+
+nav a, nav .nav-item, .navbar-brand:hover{
+  color: white;
+}
+
+/* Visit Link */
+.visits a{
+  font-size: 1.5rem;
+}
+
+.vh-left a{
+  padding: 1rem;
+}
+
+.delete{
+  margin-left: 1rem;
+}
+

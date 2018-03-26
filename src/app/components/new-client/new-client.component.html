@@ -1,0 +1,85 @@
+<nav class="navbar fixed-top navbar-expand-sm navbar-light shadow">
+  <a class="navbar-brand" [routerLink]="['/']"><b><i>EasyMed</i></b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav ml-auto">
+          <!-- <a class="nav-item nav-link" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a> -->
+          <a class="nav-item nav-link" [routerLink]="['/users/' + user._id]">Patients</a>
+          <a class="nav-item nav-link" [routerLink]="['/users/' + user._id + '/edit']">Profile</a>
+          <button (click)="logout()" class="nav-item logout">Logout</button>
+      </div>
+  </div>
+</nav>
+
+<div id="add-form-body" class="container-fluid">
+<div id="add-form" class="container shadow">
+<h3>Add Client</h3>
+<hr>
+<div class="form">
+<p *ngIf="savingError" class="error alert alert-danger" role="alert">
+    <i class="fa fa-exclamation-circle"></i>
+    {{ savingError }}
+  </p>
+
+  <form (ngSubmit)="saveNewClient()">
+  <!-- <label for="username">Username:</label>
+  <input id="username" type="text" [(ngModel)]="newClient.patientUsername" name="patientUsername" 
+  value="" class="form-control">
+  <br> -->
+
+  <label for="first-name">First Name:</label>
+  <input id="first-name" type="text" [(ngModel)]="newClient.patientFirstName" name="patientFirstName" 
+  value="" class="form-control">
+  <br>
+
+  <label for="last-name">Last Name:</label>
+  <input id="last-name" type="text" [(ngModel)]="newClient.patientLastName" name="patientLastName" 
+  value="" class="form-control">
+  <br>
+
+  <label>Gender:</label>
+  <br>
+  <div class="form-check form-check-inline">
+  <input id="gender-male" type="radio" [(ngModel)]="newClient.patientGender" name="patientGender" 
+  value="M" class="form-check-input" checked="checked">
+  <label class="form-check-label" for="gender-male">M</label>
+  </div>
+  <div class="form-check form-check-inline">
+  <input id="gender-female" type="radio" [(ngModel)]="newClient.patientGender" name="patientGender" 
+  value="F" class="form-check-input">
+  <label class="form-check-label" for="gender-female">F</label>
+  </div>
+  <br>
+  <label for="address">Address:</label>
+  <input id="address" type="text" [(ngModel)]="newClient.patientAddress" name="patientAddress" 
+  value="" class="form-control">
+  <br>
+  <label for="city">City:</label>
+  <input id="city" type="text" [(ngModel)]="newClient.patientCity" name="patientCity" 
+  value="" class="form-control">
+  <br>
+  <label for="state">State:</label>
+  <input id="state" type="text" [(ngModel)]="newClient.patientState" name="patientState" 
+  value="" class="form-control">
+  <br>
+  <label for="zip">Zip:</label>
+  <input id="zip" type="number" [(ngModel)]="newClient.patientZip" name="patientZip" 
+  value="" class="form-control">
+  <br>
+  <label for="insurance-co">Insurance:</label>
+  <input id="insurance-co" type="text" [(ngModel)]="newClient.patientInsuranceCo" name="patientInsuranceCo" 
+    value="" class="form-control">
+  <br>
+  <label for="client-image">Client Photo (optional): </label>
+  <input id="client-image" type="file" name="patientImage" ng2FileSelect [uploader]="myUploader">
+  <br>
+  <div class="col-12 text-center add-button">
+    <button class="btn btn-primary">Add Client</button>
+  </div>
+</form>
+</div>
+</div>
+</div>
